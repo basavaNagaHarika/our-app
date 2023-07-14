@@ -1,0 +1,16 @@
+summary: Fetch Restaurants by Location and Coupon Code
+tasks:
+  - id: postgres_restaurant_search
+    fn: com.gs.datastore
+    args:
+      datasource: postgres
+      data:
+        where:
+          AND:
+            - location:
+                equals: <% inputs.body.location %>
+            
+        include:
+          menuItems: true
+      config:
+        method: Restaurant.findMany
